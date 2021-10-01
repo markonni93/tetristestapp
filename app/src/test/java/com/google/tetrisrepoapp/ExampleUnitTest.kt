@@ -1,4 +1,4 @@
-package com.google.tetristestapp
+package com.google.tetrisrepoapp
 
 import org.junit.Test
 
