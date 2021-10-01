@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/clItemRepository"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvRepoLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_16"
+        android:text="@string/repository_name_label"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvRepoName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintBottom_toBottomOf="@id/tvRepoLabel"
+        app:layout_constraintStart_toEndOf="@id/tvRepoLabel"
+        app:layout_constraintTop_toTopOf="@id/tvRepoLabel"
+        tools:text="Repo 1" />
+
+    <TextView
+        android:id="@+id/tvOwnerNameLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/repository_owner_name_label"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvRepoLabel" />
+
+    <TextView
+        android:id="@+id/tvOwnerName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintBottom_toBottomOf="@id/tvOwnerNameLabel"
+        app:layout_constraintStart_toEndOf="@id/tvOwnerNameLabel"
+        app:layout_constraintTop_toTopOf="@id/tvOwnerNameLabel"
+        tools:text="Marko" />
+
+    <TextView
+        android:id="@+id/tvRepositorySizeLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_8"
+        android:text="@string/repository_size_label"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvOwnerNameLabel" />
+
+    <TextView
+        android:id="@+id/tvRepositorySize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_8"
+        app:layout_constraintBottom_toBottomOf="@id/tvRepositorySizeLabel"
+        app:layout_constraintStart_toEndOf="@id/tvRepositorySizeLabel"
+        app:layout_constraintTop_toTopOf="@id/tvRepositorySizeLabel"
+        tools:text="Marko" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

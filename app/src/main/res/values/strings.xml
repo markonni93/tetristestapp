@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TetrisTestApp</string>
+    <string name="repository_name_label">Repository name:</string>
+    <string name="repository_owner_name_label">Repository owner name:</string>
+    <string name="repository_size_label">Repository size:</string>
 </resources>
