@@ -34,7 +34,7 @@ class NetworkModule {
     @Provides
     fun provideRetrofit(client: OkHttpClient): TetrisRepoApiService {
         return Retrofit.Builder()
-            .baseUrl("BuildConfig.BASE_URL")
+            .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
