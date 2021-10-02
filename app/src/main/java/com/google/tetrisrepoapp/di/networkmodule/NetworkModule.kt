@@ -1,7 +1,7 @@
 package com.google.tetrisrepoapp.di.networkmodule
 
 import com.google.tetrisrepoapp.BuildConfig
-import com.google.tetrisrepoapp.data.remote.TetrisRepoApiService
+import com.google.tetrisrepoapp.data.remote.RepositoryApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,13 +32,13 @@ class NetworkModule {
     }
 
     @Provides
-    fun provideRetrofit(client: OkHttpClient): TetrisRepoApiService {
+    fun provideRetrofit(client: OkHttpClient): RepositoryApiService {
         return Retrofit.Builder()
             .baseUrl("https://api.github.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
-            .create(TetrisRepoApiService::class.java)
+            .create(RepositoryApiService::class.java)
     }
 
 }

@@ -11,6 +11,7 @@ class TetrisRepoRemoteMapper {
     fun mapRepoResponseToResponseEntity(response: RepositoryResponse): List<RepoEntity> {
         return response.items.map { remoteRepositoryResponse ->
             RepoEntity(
+                id = remoteRepositoryResponse.id,
                 repositoryName = remoteRepositoryResponse.name,
                 ownerLoginName = remoteRepositoryResponse.owner.login,
                 repositorySize = remoteRepositoryResponse.size,
