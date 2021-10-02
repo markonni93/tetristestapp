@@ -69,6 +69,6 @@
         app:layout_constraintBottom_toBottomOf="@id/tvRepositorySizeLabel"
         app:layout_constraintStart_toEndOf="@id/tvRepositorySizeLabel"
         app:layout_constraintTop_toTopOf="@id/tvRepositorySizeLabel"
-        tools:text="Marko" />
+        tools:text="1234" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

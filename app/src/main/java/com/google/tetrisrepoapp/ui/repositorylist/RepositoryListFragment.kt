@@ -52,6 +52,13 @@ class RepositoryListFragment : Fragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             pagingAdapter.loadStateFlow.collectLatest { loadState ->
 
+                // Used for displaying initial loading screen while we fetch the first batch of data
+                if (loadState.refresh is LoadState.Loading) {
+                    binding.progressBar.visibility = View.VISIBLE
+                } else {
+                    binding.progressBar.visibility = View.GONE
+                }
+
                 if (loadState.refresh is LoadState.Error) {
                     constructAndShowToastMessage((loadState.refresh as LoadState.Error).error.message)
                 } else if (loadState.append is LoadState.Error) {
