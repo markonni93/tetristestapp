@@ -2,4 +2,5 @@
 <resources>
     <dimen name="space_8">8dp</dimen>
     <dimen name="space_16">16dp</dimen>
+    <dimen name="progress_bar_size">32dp</dimen>
 </resources>

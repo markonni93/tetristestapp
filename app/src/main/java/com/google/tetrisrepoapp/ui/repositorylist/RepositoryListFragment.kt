@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.tetrisrepoapp.databinding.FragmentRepositoryListBinding
+import com.google.tetrisrepoapp.ui.repositorylist.adapter.LoadRepositoryStateAdapter
 import com.google.tetrisrepoapp.ui.repositorylist.adapter.RepoComparator
 import com.google.tetrisrepoapp.ui.repositorylist.adapter.RepositoryListPagingAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -62,7 +63,9 @@ class RepositoryListFragment : Fragment() {
 
     private fun setupRecyclerView() {
         pagingAdapter = RepositoryListPagingAdapter(RepoComparator)
-        binding.rvRepositories.adapter = pagingAdapter
+        val concatAdapter =
+            pagingAdapter.withLoadStateFooter(footer = LoadRepositoryStateAdapter { pagingAdapter.retry() })
+        binding.rvRepositories.adapter = concatAdapter
         binding.rvRepositories.addItemDecoration(
             DividerItemDecoration(
                 binding.rvRepositories.context,

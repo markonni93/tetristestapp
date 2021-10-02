@@ -53,7 +53,7 @@ class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem
         }
     }
 
-    internal class HasWikiRepoViewHolder(private val parent: ItemRepositoryHasWikiBinding) :
+    class HasWikiRepoViewHolder(private val parent: ItemRepositoryHasWikiBinding) :
         RecyclerView.ViewHolder(parent.root) {
 
         fun bind(item: RepoUiItem.RepoUiHasWikiItem) {
@@ -63,7 +63,7 @@ class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem
         }
     }
 
-    internal class RegularRepoViewHolder(private val parent: ItemRepositoryRegularBinding) :
+    class RegularRepoViewHolder(private val parent: ItemRepositoryRegularBinding) :
         RecyclerView.ViewHolder(parent.root) {
 
         fun bind(item: RepoUiItem.RepoUiRegularItem) {
