@@ -9,6 +9,7 @@ import com.google.tetrisrepoapp.databinding.ItemRepositoryHasWikiBinding
 import com.google.tetrisrepoapp.databinding.ItemRepositoryRegularBinding
 import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
+/** Adapter used for displaying paged data on the UI */
 class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem>) :
     PagingDataAdapter<RepoUiItem, RecyclerView.ViewHolder>(diffCallback) {
 

@@ -1,5 +1,6 @@
 package com.google.tetrisrepoapp.data.remote
 
+import com.google.tetrisrepoapp.data.remote.RemoteDataService.Companion.TETRIS_QUERY
 import com.google.tetrisrepoapp.model.mapper.RemoteErrorMapper
 import com.google.tetrisrepoapp.model.mapper.TetrisRepoRemoteMapper
 import com.google.tetrisrepoapp.model.response.NetworkResponseResult
@@ -7,6 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
+/**
+ * Use [RepositoryApiService] to fetch list of repositories from Github for the [TETRIS_QUERY] query
+ */
 class RemoteDataService @Inject constructor(
     private val repositoryApiService: RepositoryApiService,
     private val tetrisRepoRemoteMapper: TetrisRepoRemoteMapper,

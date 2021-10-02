@@ -2,6 +2,7 @@ package com.google.tetrisrepoapp.model.error
 
 import com.google.gson.annotations.SerializedName
 
+/** Data class for potential errors returned by Github API */
 data class ApiError(
     val message: String,
     val errors: List<ApiErrorBody>?,

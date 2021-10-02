@@ -3,9 +3,7 @@ package com.google.tetrisrepoapp.model.mapper
 import com.google.tetrisrepoapp.model.RepoEntity
 import com.google.tetrisrepoapp.model.response.RepositoryResponse
 
-/**
- * Maps the list of repositories fetched from the backend
- */
+/** Mapper used for constructing the list of repositories fetched from Github */
 class TetrisRepoRemoteMapper {
 
     fun mapRepoResponseToRepoEntity(response: RepositoryResponse): List<RepoEntity> {

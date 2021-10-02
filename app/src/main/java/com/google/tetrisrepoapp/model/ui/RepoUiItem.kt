@@ -1,5 +1,6 @@
 package com.google.tetrisrepoapp.model.ui
 
+/** UI model which we actually display on the screen */
 sealed class RepoUiItem {
 
     abstract val id: Long

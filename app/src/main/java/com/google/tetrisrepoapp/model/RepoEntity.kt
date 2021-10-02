@@ -1,7 +1,7 @@
 package com.google.tetrisrepoapp.model
 
 /**
- * Model mapped from the response of fetched list of repositories with the we need.
+ * Model mapped from the response of fetched list of repositories.
  */
 data class RepoEntity(
     val id: Long,

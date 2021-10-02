@@ -4,6 +4,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.google.tetrisrepoapp.model.RepoEntity
 import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
+/** Used for calculating difference between items displayed inside [RepositoryListPagingAdapter]*/
 object RepoComparator : DiffUtil.ItemCallback<RepoUiItem>() {
     override fun areItemsTheSame(oldItem: RepoUiItem, newItem: RepoUiItem): Boolean {
         return oldItem.id == newItem.id

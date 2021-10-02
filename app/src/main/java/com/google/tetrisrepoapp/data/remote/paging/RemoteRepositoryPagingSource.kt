@@ -6,6 +6,9 @@ import com.google.tetrisrepoapp.data.remote.RemoteDataService
 import com.google.tetrisrepoapp.model.mapper.RepoUiMapper
 import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
+/**
+ * Handles pagination requests for fetching list of repositories
+ */
 class RemoteRepositoryPagingSource(
     private val remoteDataService: RemoteDataService,
     private val repoUiMapper: RepoUiMapper

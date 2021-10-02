@@ -12,6 +12,9 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Provides single instance of [Retrofit] and [OkHttpClient] that are required for fetching data from the remote
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {

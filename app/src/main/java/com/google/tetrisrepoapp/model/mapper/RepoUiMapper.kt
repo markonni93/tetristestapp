@@ -3,6 +3,7 @@ package com.google.tetrisrepoapp.model.mapper
 import com.google.tetrisrepoapp.model.RepoEntity
 import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
+/** Mapper used for constructing list of items that we display on UI */
 class RepoUiMapper {
 
     fun mapRepoUiItems(repoEntities: List<RepoEntity>): List<RepoUiItem> {

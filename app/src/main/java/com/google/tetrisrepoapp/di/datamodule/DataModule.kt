@@ -12,6 +12,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 
+/**
+ * [DataModule] provides single instance of [RemoteDataService] and [RemoteRepositoryPagingSource] as well
+ * as mapper classes that are required for fetching and mapping the data to proper objects.
+ */
 @Module
 @InstallIn(SingletonComponent::class)
 class DataModule {
@@ -40,10 +44,10 @@ class DataModule {
     fun provideRepoUiMapper() = RepoUiMapper()
 
     @Provides
-    fun provideGson() = Gson()
-
-    @Provides
     fun provideRemoteErrorMapper(gson: Gson): RemoteErrorMapper {
         return RemoteErrorMapper(gson)
     }
+
+    @Provides
+    fun provideGson() = Gson()
 }

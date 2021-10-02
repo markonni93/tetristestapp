@@ -8,6 +8,7 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.tetrisrepoapp.databinding.ItemRepositoryLoadingBinding
 
+/** Adapter used for displaying loading progress and retry option at the bottom of the list of the currently displayed items */
 class LoadRepositoryStateAdapter(
     private val retry: () -> Unit
 ) :
