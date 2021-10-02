@@ -14,10 +14,19 @@ class RepositoryListViewModel @Inject constructor(private val remoteRepositoryPa
     ViewModel() {
 
     val flow = Pager(
-        PagingConfig(pageSize = 23)
+        PagingConfig(
+            initialLoadSize = INITIAL_LOAD_SIZE,
+            pageSize = PAGE_SIZE,
+            prefetchDistance = PREFETCH_DISTANCE
+        )
     ) {
         remoteRepositoryPagingSource
     }.flow
         .cachedIn(viewModelScope)
 
+    companion object {
+        private const val INITIAL_LOAD_SIZE = 50
+        private const val PAGE_SIZE = 50
+        private const val PREFETCH_DISTANCE = 25
+    }
 }

@@ -15,6 +15,14 @@ class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem
     private var itemRepositoryHasWikiBinding: ItemRepositoryHasWikiBinding? = null
     private var itemRepositoryRegularBinding: ItemRepositoryRegularBinding? = null
 
+    override fun getItemViewType(position: Int): Int {
+        return when (getItem(position)) {
+            is RepoUiItem.RepoUiRegularItem -> VIEWTYPE_REGULAR_REPO_ITEM
+            is RepoUiItem.RepoUiHasWikiItem -> VIEWTYPE_HAS_WIKI_REPO_ITEM
+            else -> throw IllegalStateException("Unknown item at position $position")
+        }
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder =
         when (viewType) {
             VIEWTYPE_REGULAR_REPO_ITEM -> {
@@ -38,14 +46,6 @@ class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem
             }
         }
 
-    override fun getItemViewType(position: Int): Int {
-        return when (getItem(position)) {
-            is RepoUiItem.RepoUiRegularItem -> VIEWTYPE_REGULAR_REPO_ITEM
-            is RepoUiItem.RepoUiHasWikiItem -> VIEWTYPE_HAS_WIKI_REPO_ITEM
-            else -> throw IllegalStateException("Unknown item at position $position")
-        }
-    }
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (val item = getItem(position)) {
             is RepoUiItem.RepoUiHasWikiItem -> (holder as HasWikiRepoViewHolder).bind(item)
@@ -53,20 +53,22 @@ class RepositoryListPagingAdapter(diffCallback: DiffUtil.ItemCallback<RepoUiItem
         }
     }
 
-    class HasWikiRepoViewHolder(private val parent: ItemRepositoryHasWikiBinding) :
+    internal class HasWikiRepoViewHolder(private val parent: ItemRepositoryHasWikiBinding) :
         RecyclerView.ViewHolder(parent.root) {
 
         fun bind(item: RepoUiItem.RepoUiHasWikiItem) {
-            parent.tvRepoLabel.text = item.repositoryName
+            parent.tvRepoName.text = item.repositoryName
+            parent.tvOwnerName.text = item.repositoryOwner
             parent.tvRepositorySize.text = item.repositorySize
         }
     }
 
-    class RegularRepoViewHolder(private val parent: ItemRepositoryRegularBinding) :
+    internal class RegularRepoViewHolder(private val parent: ItemRepositoryRegularBinding) :
         RecyclerView.ViewHolder(parent.root) {
 
         fun bind(item: RepoUiItem.RepoUiRegularItem) {
-            parent.tvRepoLabel.text = item.repositoryName
+            parent.tvRepoName.text = item.repositoryName
+            parent.tvOwnerName.text = item.repositoryOwner
             parent.tvRepositorySize.text = item.repositorySize
         }
     }

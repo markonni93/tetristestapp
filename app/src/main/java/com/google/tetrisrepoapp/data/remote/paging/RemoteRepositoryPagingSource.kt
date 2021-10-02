@@ -15,14 +15,19 @@ class RemoteRepositoryPagingSource(
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, RepoUiItem> {
         return try {
             val nextPageNumber = params.key ?: 1
-            val response = remoteDataService.fetchRepositories(nextPageNumber)
-            return LoadResult.Page(
-                data = repoUiMapper.mapRepoUiItems(response),
-                prevKey = null,
-                nextKey = nextPageNumber + 1
-            )
+            val response = remoteDataService.fetchRepositories(nextPageNumber, params.loadSize)
+
+            return if (response.data != null) {
+                LoadResult.Page(
+                    data = repoUiMapper.mapRepoUiItems(response.data),
+                    prevKey = null,
+                    nextKey = nextPageNumber + 1
+                )
+            } else {
+                LoadResult.Error(Exception(response.message))
+            }
         } catch (e: Exception) {
-            LoadResult.Error(Throwable("Something went wrong $e"))
+            LoadResult.Error(e)
         }
     }
 

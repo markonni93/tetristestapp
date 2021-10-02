@@ -1,8 +1,10 @@
 package com.google.tetrisrepoapp.di.datamodule
 
+import com.google.gson.Gson
 import com.google.tetrisrepoapp.data.remote.RemoteDataService
 import com.google.tetrisrepoapp.data.remote.RepositoryApiService
 import com.google.tetrisrepoapp.data.remote.paging.RemoteRepositoryPagingSource
+import com.google.tetrisrepoapp.model.mapper.RemoteErrorMapper
 import com.google.tetrisrepoapp.model.mapper.RepoUiMapper
 import com.google.tetrisrepoapp.model.mapper.TetrisRepoRemoteMapper
 import dagger.Module
@@ -17,9 +19,10 @@ class DataModule {
     @Provides
     fun provideRemoteDataService(
         apiService: RepositoryApiService,
-        tetrisRepoRemoteMapper: TetrisRepoRemoteMapper
+        tetrisRepoRemoteMapper: TetrisRepoRemoteMapper,
+        remoteErrorMapper: RemoteErrorMapper
     ): RemoteDataService {
-        return RemoteDataService(apiService, tetrisRepoRemoteMapper)
+        return RemoteDataService(apiService, tetrisRepoRemoteMapper, remoteErrorMapper)
     }
 
     @Provides
@@ -35,4 +38,12 @@ class DataModule {
 
     @Provides
     fun provideRepoUiMapper() = RepoUiMapper()
+
+    @Provides
+    fun provideGson() = Gson()
+
+    @Provides
+    fun provideRemoteErrorMapper(gson: Gson): RemoteErrorMapper {
+        return RemoteErrorMapper(gson)
+    }
 }

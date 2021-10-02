@@ -1,7 +1,7 @@
 package com.google.tetrisrepoapp.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.google.tetrisrepoapp.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -16,6 +16,4 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
     }
-
-
 }

@@ -1,35 +1,42 @@
 package com.google.tetrisrepoapp.data.remote
 
+import com.google.tetrisrepoapp.model.mapper.RemoteErrorMapper
 import com.google.tetrisrepoapp.model.mapper.TetrisRepoRemoteMapper
+import com.google.tetrisrepoapp.model.response.NetworkResponseResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class RemoteDataService @Inject constructor(
     private val repositoryApiService: RepositoryApiService,
-    private val tetrisRepoRemoteMapper: TetrisRepoRemoteMapper
+    private val tetrisRepoRemoteMapper: TetrisRepoRemoteMapper,
+    private val remoteErrorMapper: RemoteErrorMapper
 ) {
 
-    suspend fun fetchRepositories(page: Int) =
+    suspend fun fetchRepositories(page: Int, perPage: Int) =
         withContext(Dispatchers.IO) {
             try {
                 val response =
-                    repositoryApiService.getRepositories(TETRIS_QUERY, page = page, perPage = PER_PAGE)
+                    repositoryApiService.getRepositories(
+                        query = TETRIS_QUERY,
+                        page = page,
+                        perPage = perPage
+                    )
 
                 if (response.isSuccessful && response.body() != null) {
-                    return@withContext tetrisRepoRemoteMapper.mapRepoResponseToResponseEntity(
-                        response.body()!!
-                    )
+                    val data =
+                        tetrisRepoRemoteMapper.mapRepoResponseToRepoEntity(response.body()!!)
+                    return@withContext NetworkResponseResult.Success(data)
                 } else {
-                    throw Exception("Error happened because ${response.code()} and response body ${response.body()}")
+                    val errorResponse = remoteErrorMapper.mapApiError(response.errorBody())
+                    return@withContext NetworkResponseResult.Error("${response.code()} ${errorResponse.message}")
                 }
             } catch (e: Exception) {
-                throw e
+                return@withContext NetworkResponseResult.Error(e.message)
             }
         }
 
     companion object {
         private const val TETRIS_QUERY = "tetris"
-        private const val PER_PAGE = 50
     }
 }

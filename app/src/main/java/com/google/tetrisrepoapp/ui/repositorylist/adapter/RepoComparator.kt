@@ -6,7 +6,6 @@ import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
 object RepoComparator : DiffUtil.ItemCallback<RepoUiItem>() {
     override fun areItemsTheSame(oldItem: RepoUiItem, newItem: RepoUiItem): Boolean {
-        // Id is unique.
         return oldItem.id == newItem.id
     }
 

@@ -8,7 +8,7 @@ import com.google.tetrisrepoapp.model.response.RepositoryResponse
  */
 class TetrisRepoRemoteMapper {
 
-    fun mapRepoResponseToResponseEntity(response: RepositoryResponse): List<RepoEntity> {
+    fun mapRepoResponseToRepoEntity(response: RepositoryResponse): List<RepoEntity> {
         return response.items.map { remoteRepositoryResponse ->
             RepoEntity(
                 id = remoteRepositoryResponse.id,
