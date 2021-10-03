@@ -4,6 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.tetrisrepoapp.data.remote.RemoteDataService
 import com.google.tetrisrepoapp.model.mapper.RepoUiMapper
+import com.google.tetrisrepoapp.model.response.PaginationStep
 import com.google.tetrisrepoapp.model.ui.RepoUiItem
 
 /**
@@ -22,9 +23,9 @@ class RemoteRepositoryPagingSource(
 
             return if (response.data != null) {
                 LoadResult.Page(
-                    data = repoUiMapper.mapRepoUiItems(response.data),
-                    prevKey = null,
-                    nextKey = nextPageNumber + 1
+                    data = repoUiMapper.mapRepoUiItems(response.data.first),
+                    prevKey = response.data.second.firstOrNull { it.step == PaginationStep.PREV }?.page,
+                    nextKey = response.data.second.firstOrNull { it.step == PaginationStep.NEXT }?.page
                 )
             } else {
                 LoadResult.Error(Exception(response.message))

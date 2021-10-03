@@ -30,7 +30,9 @@ class RemoteDataService @Inject constructor(
                 if (response.isSuccessful && response.body() != null) {
                     val data =
                         tetrisRepoRemoteMapper.mapRepoResponseToRepoEntity(response.body()!!)
-                    return@withContext NetworkResponseResult.Success(data)
+                    val paginationInfo =
+                        tetrisRepoRemoteMapper.mapPaginationInfo(response.headers()[HEADER_PAGINATION_NAME].toString())
+                    return@withContext NetworkResponseResult.Success(Pair(data, paginationInfo))
                 } else {
                     val errorResponse = remoteErrorMapper.mapApiError(response.errorBody())
                     return@withContext NetworkResponseResult.Error("${response.code()} ${errorResponse.message}")
@@ -42,5 +44,6 @@ class RemoteDataService @Inject constructor(
 
     companion object {
         private const val TETRIS_QUERY = "tetris"
+        private const val HEADER_PAGINATION_NAME = "link"
     }
 }
