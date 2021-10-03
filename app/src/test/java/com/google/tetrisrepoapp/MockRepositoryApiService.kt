@@ -4,6 +4,7 @@ import com.google.tetrisrepoapp.data.remote.RepositoryApiService
 import com.google.tetrisrepoapp.model.response.RemoteRepository
 import com.google.tetrisrepoapp.model.response.RemoteRepositoryOwner
 import com.google.tetrisrepoapp.model.response.RepositoryResponse
+import okhttp3.Headers
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.ResponseBody.Companion.toResponseBody
 import retrofit2.Response
@@ -15,9 +16,10 @@ class MockRepositoryApiService : RepositoryApiService {
         page: Int,
         perPage: Int,
     ): Response<RepositoryResponse> {
+        val totalCount = 2000
         return Response.success(
             RepositoryResponse(
-                25, false,
+                totalCount, false,
                 listOf(
                     RemoteRepository(
                         1L,
@@ -47,7 +49,11 @@ class MockRepositoryApiService : RepositoryApiService {
                         true
                     )
                 )
-            )
+            ),
+            Headers.Builder().add(
+                "link",
+                "<https://api.github.com/search/repositories?q=tetris&page=${page + 1}&per_page=50>; rel=\"next\", <https://api.github.com/search/repositories?q=tetris&page=${totalCount / perPage}&per_page=50>; rel=\"last\""
+            ).build()
         )
     }
 
